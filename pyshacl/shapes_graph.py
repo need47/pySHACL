@@ -179,7 +179,10 @@ class ShapesGraph(object):
         :rtype: List[Shape]
         """
         if len(self._node_shape_cache) < 1:
-            self._build_node_shape_cache_from_list(shapes_uris)
+            # TC: https://github.com/RDFLib/pySHACL/issues/280
+            # self._build_node_shape_cache_from_list(shapes_uris)
+            self._build_node_shape_cache()
+            # TC
         return [self._node_shape_cache[s] for s in shapes_uris]
 
     def lookup_shape_from_node(self, node) -> Shape:
